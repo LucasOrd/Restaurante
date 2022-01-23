@@ -2,11 +2,11 @@ package com.coderhouse.h2.service;
 
 import com.coderhouse.h2.model.Restaurante;
 
-import java.util.List;
+import java.util.Map;
 
 public interface RestauranteService {
 
-    Restaurante createRestaurante(Restaurante restaurante);
+    Map createRestaurante(Restaurante restaurante);
     Restaurante getRestauranteById(Long id);
     Restaurante updateRestauranteById(Restaurante restaurante, Long id);
     void delete(Restaurante user, Long id);

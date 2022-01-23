@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
 
 @Slf4j
@@ -30,31 +29,32 @@ public class RestauranteServiceImpl implements RestauranteService {
     }
 
     @Override
-    public Restaurante createRestaurante(Restaurante restaurante) {
+    public Map createRestaurante(Restaurante restaurante) {
         try {
             mapperToString(restaurante);
             mapperToMap(restaurante);
             mapperToClass(restaurante);
-
-            return repository.save(restaurante);
+            repository.save(restaurante);
+            var restauranteString = mapper.writeValueAsString(restaurante);
+            return mapper.readValue(restauranteString, Map.class);
         } catch (JsonProcessingException e) {
             log.error("Error convertiong message to string", e);
         }
-        return restaurante;
+        return null;
     }
 
-    void mapperToString(Restaurante user) throws JsonProcessingException {
-        var restauranteString = mapper.writeValueAsString(user);
+    void mapperToString(Restaurante restaurante) throws JsonProcessingException {
+        var restauranteString = mapper.writeValueAsString(restaurante);
         log.info("Mensaje en formato String : {}", restauranteString);
     }
-    void mapperToMap(Restaurante user) throws JsonProcessingException {
-        var restauranteString = mapper.writeValueAsString(user);
+    void mapperToMap(Restaurante restaurante) throws JsonProcessingException {
+        var restauranteString = mapper.writeValueAsString(restaurante);
         var restauranteMap = mapper.readValue(restauranteString, Map.class);
         log.info("Mensaje en formato de Mapa : {}", restauranteMap);
     }
 
-    void mapperToClass(Restaurante user) throws JsonProcessingException {
-        var restauranteString = mapper.writeValueAsString(user);
+    void mapperToClass(Restaurante restaurante) throws JsonProcessingException {
+        var restauranteString = mapper.writeValueAsString(restaurante);
         var restauranteClass = mapper.readValue(restauranteString, Restaurante.class);
         log.info("Mensaje en formato de Clase : {}", restauranteClass);
     }

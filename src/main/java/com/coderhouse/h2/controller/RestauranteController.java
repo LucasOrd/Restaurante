@@ -3,6 +3,7 @@ package com.coderhouse.h2.controller;
 import com.coderhouse.h2.model.Restaurante;
 import com.coderhouse.h2.service.RestauranteService;
 import lombok.RequiredArgsConstructor;
+import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class RestauranteController {
     private final RestauranteService service;
 
     @PostMapping("/restaurante")
-    public Restaurante createRestaurante(@RequestBody Restaurante restaurante) {
+    public Map createRestaurante(@RequestBody Restaurante restaurante) {
         return service.createRestaurante(restaurante);
     }
 
