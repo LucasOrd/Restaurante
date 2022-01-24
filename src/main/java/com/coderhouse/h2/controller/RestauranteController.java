@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Map;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +23,11 @@ public class RestauranteController {
     @PutMapping("/restaurante/{id}")
     public Restaurante updateRestauranteById(@PathVariable Long id, @RequestBody  Restaurante restaurante) {
         return service.updateRestauranteById(restaurante, id);
+    }
+
+    @GetMapping("/mensajes/example")
+    public String getMensajesString() {;
+        return "Ejemplo de respuesta puerto 8081";
     }
 
 }
