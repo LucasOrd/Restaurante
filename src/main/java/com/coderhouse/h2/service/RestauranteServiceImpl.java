@@ -1,5 +1,5 @@
 package com.coderhouse.h2.service;
-
+import com.coderhouse.h2.cache.CacheClient;
 import com.coderhouse.h2.model.Restaurante;
 import com.coderhouse.h2.repository.RestauranteRepository;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,6 +21,7 @@ public class RestauranteServiceImpl implements RestauranteService {
 
     private final RestauranteRepository repository;
     private final ObjectMapper mapper;
+    private final CacheClient<Restaurante> cache;
 
     @PostConstruct
     private void PostConstruct() {
